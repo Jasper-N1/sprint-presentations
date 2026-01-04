@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sprint 20 Planning | N1 Healthcare</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #547267;
+            --accent: #92CCB7;
+            --background: #EDFFF8;
+            --text: #14211C;
+            --heading: #1D2D27;
+            --card-bg: #ffffff;
+            --border: #5D6B65;
+            --light-accent: #C8FDE8;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        header .dates {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        section {
+            padding: 48px 0;
+        }
+
+        section:nth-child(even) {
+            background: white;
+        }
+
+        h2 {
+            color: var(--heading);
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+        }
+
+        h3 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .topics-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        .topic-pill {
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px rgba(84, 114, 103, 0.3);
+        }
+
+        .architecture-img {
+            width: 100%;
+            max-width: 900px;
+            margin: 24px auto;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .benefit-item {
+            background: var(--light-accent);
+            padding: 16px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .team-section {
+            margin-bottom: 48px;
+        }
+
+        .team-header-bar {
+            background: var(--primary);
+            color: white;
+            padding: 20px 24px;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .team-header-bar h3 {
+            color: white;
+            margin: 0;
+            font-size: 1.3rem;
+        }
+
+        .task-count-badge {
+            background: var(--accent);
+            color: var(--heading);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .team-highlight {
+            background: var(--light-accent);
+            padding: 20px 24px;
+            border-left: 4px solid var(--primary);
+            font-size: 1.05rem;
+            color: var(--heading);
+        }
+
+        .team-tasks {
+            background: var(--card-bg);
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .repo-group {
+            padding: 20px 24px;
+            border-bottom: 1px solid rgba(93, 107, 101, 0.1);
+        }
+
+        .repo-group:last-child {
+            border-bottom: none;
+        }
+
+        .repo-name {
+            font-size: 0.8rem;
+            color: var(--border);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .repo-name.new {
+            color: var(--primary);
+        }
+
+        .repo-name.new::after {
+            content: 'NEW';
+            background: var(--accent);
+            color: var(--heading);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 8px 0;
+        }
+
+        .task-bullet {
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            margin-top: 8px;
+            flex-shrink: 0;
+        }
+
+        .bug-section {
+            background: #fef3c7;
+            border-left: 4px solid var(--warning);
+            padding: 20px 24px;
+        }
+
+        .bug-section h4 {
+            color: #92400e;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .bug-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 6px 0;
+            color: #78350f;
+        }
+
+        .bug-bullet {
+            width: 6px;
+            height: 6px;
+            background: var(--warning);
+            border-radius: 50%;
+            margin-top: 8px;
+            flex-shrink: 0;
+        }
+
+        .claude-note {
+            background: linear-gradient(135deg, #e8f4ea 0%, var(--light-accent) 100%);
+            border: 2px solid var(--accent);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 48px;
+        }
+
+        .claude-note h3 {
+            color: var(--primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .claude-note h3::before {
+            content: '🤖';
+        }
+
+        .claude-note p {
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .claude-note ul {
+            padding-left: 20px;
+            color: var(--text);
+        }
+
+        .claude-note li {
+            padding: 4px 0;
+        }
+
+        .claude-note code {
+            background: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: var(--primary);
+        }
+
+        .design-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .design-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 32px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .design-card h3 {
+            margin-bottom: 16px;
+        }
+
+        .design-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .design-card li {
+            padding: 8px 0;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .design-card li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 16px;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .priority-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .priority-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
+            background: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .priority-badge {
+            background: var(--primary);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .priority-badge.high {
+            background: #d35400;
+        }
+
+        .priority-badge.medium {
+            background: var(--primary);
+        }
+
+        .priority-badge.low {
+            background: var(--border);
+        }
+
+        .priority-content h4 {
+            color: var(--heading);
+            margin-bottom: 4px;
+        }
+
+        .priority-content p {
+            color: var(--border);
+            font-size: 0.9rem;
+        }
+
+        .vision-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .vision-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            border-top: 4px solid var(--accent);
+        }
+
+        .vision-card h3 {
+            margin-bottom: 16px;
+        }
+
+        .vision-card p {
+            color: var(--border);
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+
+        .vision-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .vision-card li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 0.9rem;
+        }
+
+        .vision-card li::before {
+            content: '\2022';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .out-of-scope {
+            background: #fff8f0;
+            border: 1px solid #e8d4c4;
+            border-radius: 8px;
+            padding: 24px;
+        }
+
+        .out-of-scope h3 {
+            color: #8b5e3c;
+            margin-bottom: 16px;
+        }
+
+        .out-of-scope ul {
+            columns: 2;
+            column-gap: 40px;
+        }
+
+        .out-of-scope li {
+            padding: 6px 0;
+            color: #6b5344;
+        }
+
+        footer {
+            background: var(--heading);
+            color: white;
+            padding: 32px 0;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.75rem;
+            }
+
+            .out-of-scope ul {
+                columns: 1;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            section {
+                page-break-inside: avoid;
+            }
+
+            .team-section {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Sprint 20 Planning</h1>
+            <p class="dates">January 5 - 18, 2026</p>
+            <p style="margin-top: 16px; font-size: 1.3rem; font-weight: 500; opacity: 0.95;">Launch-Ready: Building a Stable, Scalable Production Platform</p>
+        </div>
+    </header>
+
+    <section id="topics">
+        <div class="container">
+            <h2>Sprint 20 Focus Areas</h2>
+            <div class="topics-grid">
+                <div class="topic-pill">Authentication</div>
+                <div class="topic-pill">UI Bug Fixes</div>
+                <div class="topic-pill">Deep Research Flow</div>
+                <div class="topic-pill">Final Data Quality Implementation</div>
+                <div class="topic-pill">Parser Gate Multi-File Setup</div>
+                <div class="topic-pill">SigNoz Full Setup</div>
+                <div class="topic-pill">Production Readiness Testing</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="architecture">
+        <div class="container">
+            <h2>Authentication Architecture</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">Centralized Authentication</div>
+                <div class="benefit-item">No Redundant Auth Checks</div>
+                <div class="benefit-item">Simplified Security Model</div>
+                <div class="benefit-item">Scalable Microservices</div>
+                <div class="benefit-item">Service Isolation</div>
+                <div class="benefit-item">Reduced Overhead</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tasks">
+        <div class="container">
+            <h2>Tasks by Team</h2>
+
+            <div class="team-section">
+                <div class="team-header-bar">
+                    <h3>API</h3>
+                    <span class="task-count-badge">10 tasks</span>
+                </div>
+                <div class="team-highlight">
+                    Full authentication service setup with Ory Kratos (identity) + Hydra (OAuth2) + API Backend integration for token validation, parser-gate file processing, and GCS storage.
+                </div>
+                <div class="team-tasks">
+                    <div class="repo-group">
+                        <div class="repo-name new">auth-service (Ory Kratos + Hydra)</div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Create auth-service repo with FastAPI scaffold</span></div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Configure Ory Kratos for identity management</span></div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Configure Ory Hydra for OAuth2/OIDC</span></div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Implement token verification endpoint</span></div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Implement email verification endpoint</span></div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Implement password reset endpoint</span></div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Add centralized auth logic middleware</span></div>
+                    </div>
+                    <div class="repo-group">
+                        <div class="repo-name">api-backend</div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Integrate Auth Service for token validation</span></div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Run parser-gate on file upload before storing</span></div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Store validated PDF to GCS (after parser-gate processing)</span></div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Add conversion metadata to existing meta column</span></div>
+                    </div>
+                    <div class="repo-group">
+                        <div class="repo-name">claude.md</div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Add CLAUDE.md with workflows to trigger API jobs directly</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-section">
+                <div class="team-header-bar">
+                    <h3>Data: Pre & Post Processing</h3>
+                    <span class="task-count-badge">8 tasks</span>
+                </div>
+                <div class="team-highlight">
+                    Parser-gate library (part of router) for multi-file processing + "other" category handling + full SigNoz observability + CLAUDE.md for easy triggering.
+                </div>
+                <div class="team-tasks">
+                    <div class="repo-group">
+                        <div class="repo-name">parser-gate (library in parser-router)</div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Remove/disable image batching (process single files only)</span></div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Multi-file setup integration with router</span></div>
+                    </div>
+                    <div class="repo-group">
+                        <div class="repo-name">parser-router</div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Add "other" category for non-extractable images</span></div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Store "other" pages to GCS</span></div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Add other_pages field to meta column</span></div>
+                    </div>
+                    <div class="repo-group">
+                        <div class="repo-name">signoz</div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Full SigNoz implementation for parser services</span></div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Create parser performance dashboard</span></div>
+                    </div>
+                    <div class="repo-group">
+                        <div class="repo-name">claude.md</div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Add CLAUDE.md with workflows to trigger parser jobs directly</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-section">
+                <div class="team-header-bar">
+                    <h3>Data: Extraction</h3>
+                    <span class="task-count-badge">3 tasks</span>
+                </div>
+                <div class="team-highlight">
+                    Skip non-extractable pages in sequential parser + combine "other" pages for LLM processing + CLAUDE.md for triggering extraction jobs.
+                </div>
+                <div class="team-tasks">
+                    <div class="repo-group">
+                        <div class="repo-name">parser-sequential</div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Skip pages with only "other" category</span></div>
+                    </div>
+                    <div class="repo-group">
+                        <div class="repo-name">workflow-generative-deepResearch</div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Fetch "other" pages from GCS and combine for LLM processing</span></div>
+                    </div>
+                    <div class="repo-group">
+                        <div class="repo-name">claude.md</div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Add CLAUDE.md with workflows to trigger extraction jobs directly</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-section">
+                <div class="team-header-bar">
+                    <h3>Data: Quality Evaluation</h3>
+                    <span class="task-count-badge">7 tasks</span>
+                </div>
+                <div class="team-highlight">
+                    Finalize all evaluation pipelines + cross-field validation + quality scoring + CLAUDE.md for triggering evals directly from Claude.
+                </div>
+                <div class="team-tasks">
+                    <div class="repo-group">
+                        <div class="repo-name">evaluations</div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Finalize parser evaluation pipeline</span></div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Finalize router evaluation pipeline</span></div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Finalize grouping evaluation pipeline</span></div>
+                    </div>
+                    <div class="repo-group">
+                        <div class="repo-name">data-validation-service</div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Add cross-field validation rules</span></div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Implement data quality scoring</span></div>
+                    </div>
+                    <div class="repo-group">
+                        <div class="repo-name">claude.md</div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Add CLAUDE.md with workflows to trigger evaluations directly</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-section">
+                <div class="team-header-bar">
+                    <h3>CHR (Report Generation)</h3>
+                    <span class="task-count-badge">5 tasks</span>
+                </div>
+                <div class="team-highlight">
+                    Simplified evals using Claude Code locally. No e2e integrated endpoints needed. Focus on modular MCP architecture + CLAUDE.md for easy triggering.
+                </div>
+                <div class="team-tasks">
+                    <div class="repo-group">
+                        <div class="repo-name">claude code setup</div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Set up Claude Code for local development and eval running</span></div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Configure local eval workflows with Claude Code</span></div>
+                    </div>
+                    <div class="repo-group">
+                        <div class="repo-name">chr-evals</div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Switch to Claude Code for running all evals locally (no e2e endpoint)</span></div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Minimal eval setup - just get it across the finish line</span></div>
+                    </div>
+                    <div class="repo-group">
+                        <div class="repo-name">claude.md</div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Add CLAUDE.md with workflows to trigger CHR generation and evals</span></div>
+                    </div>
+                    <div class="repo-group">
+                        <div class="repo-name">workflow architecture</div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Current workflows in maintenance mode (unless launch-blocking issues)</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-section">
+                <div class="team-header-bar">
+                    <h3>DevOps</h3>
+                    <span class="task-count-badge">11 tasks</span>
+                </div>
+                <div class="team-highlight">
+                    SigNoz full observability setup + ArgoCD GitOps deployments + error processing & retry policies + auth-service infrastructure + billing dev/prod flags + full Playwright test suite.
+                </div>
+                <div class="team-tasks">
+                    <div class="repo-group">
+                        <div class="repo-name">signoz</div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Full SigNoz setup for all services</span></div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Configure distributed tracing across microservices</span></div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Set up dashboards and alerting</span></div>
+                    </div>
+                    <div class="repo-group">
+                        <div class="repo-name">e2e-tests</div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Full Playwright test suite for production readiness</span></div>
+                    </div>
+                    <div class="repo-group">
+                        <div class="repo-name">billing-service</div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Add dev flag redirect (dev mode vs prod) for Bubble management</span></div>
+                    </div>
+                    <div class="repo-group">
+                        <div class="repo-name">infrastructure</div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Configure auth-service deployment (Ory Kratos + Hydra)</span></div>
+                    </div>
+                    <div class="repo-group">
+                        <div class="repo-name new">argocd</div>
+                        <div class="task-item"><span class="task-bullet"></span><span>ArgoCD implementation for GitOps deployments</span></div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Configure application manifests for all services</span></div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Set up sync policies and health checks</span></div>
+                    </div>
+                    <div class="repo-group">
+                        <div class="repo-name">error handling</div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Implement error processing for LLM retries</span></div>
+                    </div>
+                    <div class="repo-group">
+                        <div class="repo-name">claude.md</div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Add CLAUDE.md with workflows to trigger deployments and tests</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-section">
+                <div class="team-header-bar">
+                    <h3>Bubble</h3>
+                    <span class="task-count-badge">20 tasks</span>
+                </div>
+                <div class="team-highlight">
+                    Authentication integration with new Ory Kratos/Hydra system + UI improvements + billing/payment integration + CLAUDE.md setup.
+                </div>
+                <div class="team-tasks">
+                    <div class="repo-group">
+                        <div class="repo-name">authentication</div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Integrate with new Ory Kratos authentication flow</span></div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Update login/signup to use Ory Hydra OAuth2</span></div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Handle new token format and refresh flow</span></div>
+                    </div>
+                    <div class="repo-group">
+                        <div class="repo-name">ui improvements</div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Add error toast notifications for failed operations</span></div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Implement severity score display</span></div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Fix button styling/functionality issues</span></div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Add tooltips to UI elements</span></div>
+                    </div>
+                    <div class="repo-group">
+                        <div class="repo-name">claude.md</div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Add CLAUDE.md with workflows for Bubble development tasks</span></div>
+                    </div>
+                </div>
+                <div class="bug-section" style="background: #e3f2fd; border-left-color: #1976d2;">
+                    <h4 style="color: #0d47a1;">Sprint 20 ClickUp Tickets</h4>
+                    <div class="bug-item" style="color: #1565c0;"><span class="bug-bullet" style="background: #1976d2;"></span><span>Exception messages from API functions returned (#387)</span></div>
+                    <div class="bug-item" style="color: #1565c0;"><span class="bug-bullet" style="background: #1976d2;"></span><span>Allow review=empty on all endpoints (#378)</span></div>
+                    <div class="bug-item" style="color: #1565c0;"><span class="bug-bullet" style="background: #1976d2;"></span><span>Profile and Support modal, Stripe endpoint logging</span></div>
+                    <div class="bug-item" style="color: #1565c0;"><span class="bug-bullet" style="background: #1976d2;"></span><span>Patient State / CHR form / Record parsing fix</span></div>
+                    <div class="bug-item" style="color: #1565c0;"><span class="bug-bullet" style="background: #1976d2;"></span><span>CHR progress states / duplication fix</span></div>
+                    <div class="bug-item" style="color: #1565c0;"><span class="bug-bullet" style="background: #1976d2;"></span><span>Bug fixes / billing changes</span></div>
+                    <div class="bug-item" style="color: #1565c0;"><span class="bug-bullet" style="background: #1976d2;"></span><span>Integration billing service cost</span></div>
+                    <div class="bug-item" style="color: #1565c0;"><span class="bug-bullet" style="background: #1976d2;"></span><span>Changes empty state / file upload complete state</span></div>
+                    <div class="bug-item" style="color: #1565c0;"><span class="bug-bullet" style="background: #1976d2;"></span><span>Manual Stripe API integration</span></div>
+                    <div class="bug-item" style="color: #1565c0;"><span class="bug-bullet" style="background: #1976d2;"></span><span>UI fixes: record dropdown counters, Genetic layout, Empty placeholders</span></div>
+                    <div class="bug-item" style="color: #1565c0;"><span class="bug-bullet" style="background: #1976d2;"></span><span>Change front page</span></div>
+                    <div class="bug-item" style="color: #1565c0;"><span class="bug-bullet" style="background: #1976d2;"></span><span>Payment flow integration with billing service</span></div>
+                </div>
+            </div>
+
+            <div class="claude-note">
+                <h3>Claude Code Integration Strategy</h3>
+                <p><strong>Key Decision:</strong> We can skip building endpoint integrations and trigger everything directly from Claude Code.</p>
+                <ul>
+                    <li>Each repo gets a <code>CLAUDE.md</code> file with workflow triggers</li>
+                    <li>Long-running jobs (2-3 hours) can be triggered and left running via background processes or API queues</li>
+                    <li>Claude triggers the job -> job runs on server independently -> Claude checks status later</li>
+                    <li>This approach reduces integration overhead and speeds up development cycles</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="design">
+        <div class="container">
+            <h2>Design Focus</h2>
+            <div class="design-grid">
+                <div class="design-card">
+                    <h3>Playground Concept</h3>
+                    <p>Platform for building and testing report generators - internal R&D focus for Design and DevOps teams.</p>
+                    <ul>
+                        <li>Infrastructure planning for plug-n-play architecture</li>
+                        <li>Testing new workflow patterns</li>
+                        <li>Staging environment validated (30+ records, zero bugs)</li>
+                    </ul>
+                </div>
+                <div class="design-card">
+                    <h3>Bubble Front-End Training</h3>
+                    <p>Basic design setup for the Bubble team to ensure consistent UI implementation.</p>
+                    <ul>
+                        <li>Component library setup</li>
+                        <li>Design system integration</li>
+                        <li>Style guide adherence</li>
+                        <li>Responsive patterns</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="deep-research">
+        <div class="container">
+            <h2>Deep Research Architecture</h2>
+            <p style="margin-bottom: 24px; color: var(--border);">MCP-based modular architecture. Target: spin up new workflow in 1 day (add new word to API endpoint + swap prompt/model).</p>
+
+            <div class="priority-list">
+                <div class="priority-item">
+                    <span class="priority-badge high">P0</span>
+                    <div class="priority-content">
+                        <h4>Deep Research Flow</h4>
+                        <p>E2E integrated with images and formatting - end of sprint</p>
+                    </div>
+                </div>
+                <div class="priority-item">
+                    <span class="priority-badge medium">P1</span>
+                    <div class="priority-content">
+                        <h4>Graph Flow</h4>
+                        <p>Formatting only - 1-2 days max</p>
+                    </div>
+                </div>
+                <div class="priority-item">
+                    <span class="priority-badge medium">P1</span>
+                    <div class="priority-content">
+                        <h4>Image Generation MCP</h4>
+                        <p>Ready within 1 week - part of modular setup</p>
+                    </div>
+                </div>
+                <div class="priority-item">
+                    <span class="priority-badge medium">P1</span>
+                    <div class="priority-content">
+                        <h4>New Models</h4>
+                        <p>Get running ASAP (check with Arun, <1 hour if no barriers) - ensure interchangeability from start</p>
+                    </div>
+                </div>
+                <div class="priority-item">
+                    <span class="priority-badge low">P2</span>
+                    <div class="priority-content">
+                        <h4>Evals (CHR)</h4>
+                        <p>Minor work - Claude Code for running all evals locally</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 32px; padding: 20px; background: var(--light-accent); border-radius: 8px;">
+                <h4 style="color: var(--heading); margin-bottom: 12px;">Architecture Direction</h4>
+                <p style="color: var(--text); margin-bottom: 12px;">Three flows with separate codebases is causing duplication and slow dev cycles. Goal: consolidate around <strong>MCP / modular architecture / Phoenix / vibe-coding</strong> to move faster.</p>
+                <ul style="color: var(--text); padding-left: 20px;">
+                    <li>Use MCPs for formatting/branding and image generation</li>
+                    <li>No separate repos for each workflow - all flows share same architecture</li>
+                    <li>Focus: get solid MCPs up for Deep Research first, integrate into current workflows later</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="vision">
+        <div class="container">
+            <h2>Platform Vision</h2>
+            <p style="margin-bottom: 24px; color: var(--border);">JY's direction: Transform N1 from single-page app to a platform housing many applications.</p>
+
+            <div class="vision-grid">
+                <div class="vision-card">
+                    <h3>New Parsers</h3>
+                    <p>Completely new repositories and services. Router decides type and sends to appropriate queue.</p>
+                    <ul>
+                        <li>Imaging data parsers</li>
+                        <li>Proteome parsers</li>
+                        <li>Other specialized data parsers</li>
+                    </ul>
+                </div>
+                <div class="vision-card">
+                    <h3>Report Generator SDK</h3>
+                    <p>SDK handling platform integration - progress updates, data ingestion (similar to Phoenix).</p>
+                    <ul>
+                        <li>Teams focus on core logic</li>
+                        <li>No inter-dependencies</li>
+                        <li>Multiple new report generators</li>
+                    </ul>
+                </div>
+                <div class="vision-card">
+                    <h3>Plug-n-Play Platform</h3>
+                    <p>Deriv-style developer ecosystem (20k+ third-party apps reference).</p>
+                    <ul>
+                        <li>Doctor accounts with API keys</li>
+                        <li>MCP server for patient data access</li>
+                        <li>Register custom report endpoints</li>
+                        <li>Marketplace for sharing report generators</li>
+                    </ul>
+                </div>
+                <div class="vision-card">
+                    <h3>Audio & Video CHRs</h3>
+                    <p>Video CHRs challenging (30s limit), but audio CHRs achievable.</p>
+                    <ul>
+                        <li>NotebookLM Enterprise API for audio</li>
+                        <li>Video generation limitations noted</li>
+                    </ul>
+                </div>
+                <div class="vision-card">
+                    <h3>Subdomain Architecture</h3>
+                    <p>Each application as its own website under N1 platform.</p>
+                    <ul>
+                        <li>analysis.n1.care</li>
+                        <li>supplements.n1.care</li>
+                        <li>Biomarker analysis apps</li>
+                        <li>Drug design tools</li>
+                    </ul>
+                </div>
+                <div class="vision-card">
+                    <h3>Infrastructure Needs</h3>
+                    <p>Key components for platform transformation.</p>
+                    <ul>
+                        <li>MCP service for database interface</li>
+                        <li>Python SDK for third-party integration</li>
+                        <li>Modular frontend components</li>
+                        <li>Ory Kratos (identity) + Hydra (OAuth2/OIDC)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="out-of-scope">
+        <div class="container">
+            <h2>Out of Scope</h2>
+            <div class="out-of-scope">
+                <h3>Excluded from Sprint 20</h3>
+                <ul>
+                    <li>parser-gate: BytesIO/file-like objects support</li>
+                    <li>parser-gate: Selective batching API</li>
+                    <li>Bubble: UI to select which images to batch</li>
+                    <li>api-backend: Store original raw file to GCS</li>
+                    <li>Current workflows (maintenance mode only)</li>
+                    <li>Claude SDK work (existing flows stay as-is)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>N1 Healthcare | Sprint 20 Planning | January 2026</p>
+        </div>
+    </footer>
+</body>
+</html>
