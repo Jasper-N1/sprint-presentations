@@ -288,45 +288,6 @@
             color: var(--primary);
         }
 
-        .design-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-        }
-
-        .design-card {
-            background: var(--card-bg);
-            border-radius: 8px;
-            padding: 32px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        }
-
-        .design-card h3 {
-            margin-bottom: 16px;
-        }
-
-        .design-card ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .design-card li {
-            padding: 8px 0;
-            padding-left: 24px;
-            position: relative;
-        }
-
-        .design-card li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 16px;
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
-        }
-
         .priority-list {
             display: flex;
             flex-direction: column;
@@ -712,10 +673,10 @@
             <div class="team-section">
                 <div class="team-header-bar">
                     <h3>Bubble</h3>
-                    <span class="task-count-badge">20 tasks</span>
+                    <span class="task-count-badge">22 tasks</span>
                 </div>
                 <div class="team-highlight">
-                    Authentication integration with new Ory Kratos/Hydra system + UI improvements + billing/payment integration + CLAUDE.md setup.
+                    Authentication integration with new Ory Kratos/Hydra system + UI improvements + billing/payment integration + design training + CLAUDE.md setup.
                 </div>
                 <div class="team-tasks">
                     <div class="repo-group">
@@ -730,6 +691,11 @@
                         <div class="task-item"><span class="task-bullet"></span><span>Implement severity score display</span></div>
                         <div class="task-item"><span class="task-bullet"></span><span>Fix button styling/functionality issues</span></div>
                         <div class="task-item"><span class="task-bullet"></span><span>Add tooltips to UI elements</span></div>
+                    </div>
+                    <div class="repo-group">
+                        <div class="repo-name">design / training</div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Playground Concept: Infrastructure planning for plug-n-play architecture</span></div>
+                        <div class="task-item"><span class="task-bullet"></span><span>Front-End Training: Component library setup and design system integration</span></div>
                     </div>
                     <div class="repo-group">
                         <div class="repo-name">claude.md</div>
@@ -762,33 +728,6 @@
                     <li>Claude triggers the job -> job runs on server independently -> Claude checks status later</li>
                     <li>This approach reduces integration overhead and speeds up development cycles</li>
                 </ul>
-            </div>
-        </div>
-    </section>
-
-    <section id="design">
-        <div class="container">
-            <h2>Design Focus</h2>
-            <div class="design-grid">
-                <div class="design-card">
-                    <h3>Playground Concept</h3>
-                    <p>Platform for building and testing report generators - internal R&D focus for Design and DevOps teams.</p>
-                    <ul>
-                        <li>Infrastructure planning for plug-n-play architecture</li>
-                        <li>Testing new workflow patterns</li>
-                        <li>Staging environment validated (30+ records, zero bugs)</li>
-                    </ul>
-                </div>
-                <div class="design-card">
-                    <h3>Bubble Front-End Training</h3>
-                    <p>Basic design setup for the Bubble team to ensure consistent UI implementation.</p>
-                    <ul>
-                        <li>Component library setup</li>
-                        <li>Design system integration</li>
-                        <li>Style guide adherence</li>
-                        <li>Responsive patterns</li>
-                    </ul>
-                </div>
             </div>
         </div>
     </section>
